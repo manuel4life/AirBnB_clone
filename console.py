@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """ This is the command line or console module """
 
-import cmd, sys
-from turtle import bye
+import cmd
+import sys
+
 
 class HBNBCommand(cmd.Cmd):
     """ this is the console class """
