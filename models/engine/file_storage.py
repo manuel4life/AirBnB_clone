@@ -9,7 +9,7 @@ import json
 class FileStorage:
     """ The file storage class """
 
-    __file_path = "my_file.json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -29,14 +29,14 @@ class FileStorage:
         """ serializes __objects to a JSON file """
 
         e_objects = FileStorage.__objects
-        e_objects_dict = {key: e_objects[key] for key in e_objects.keys()}
+        e_objects_dict = {key: e_objects[key].to_dict() for key in e_objects.keys()}
         with open(FileStorage.__file_path, 'w') as fp:
             json.dump(e_objects_dict, fp)
 
-    deg reload(self):
+    def reload(self):
         """ deserializes a JSON file to __objects """
 
         if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, 'r') as fp:
+            with open(FileStorage.__file_path ) as fp:
                 res = json.load(fp)
                 return res
