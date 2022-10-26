@@ -33,7 +33,7 @@ class FileStorage:
         with open(FileStorage.__file_path, 'w') as fp:
             json.dump(e_objects_dict, fp)
 
-    deg reload(self):
+    def reload(self):
         """ deserializes a JSON file to __objects """
 
         if os.path.exists(FileStorage.__file_path):
