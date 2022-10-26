@@ -1,10 +1,1 @@
-{
-  "BaseModel.d4cfcb81-13e3-41c0-b881-45ff1bce6c7f": {
-    "id": "d4cfcb81-13e3-41c0-b881-45ff1bce6c7f",
-    "created_at": "2022-10-26T13:44:05.065830",
-    "updated_at": "2022-10-26T13:44:05.065944",
-    "name": "My_First_Model",
-    "my_number": 89,
-    "__class__": "BaseModel"
-  }
-}
+{"BaseModel.3900c781-8d10-4816-90d4-3546e66e7a56": {"id": "3900c781-8d10-4816-90d4-3546e66e7a56", "created_at": "2022-10-26T13:47:33.340906", "updated_at": "2022-10-26T13:47:33.341065", "name": "My_First_Model", "my_number": 89, "__class__": "BaseModel"}}
