@@ -46,6 +46,38 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_update(self, arg):
+        """ Updates an instance based on the class name and id by adding or updating attribute """
+    
+        args = arg.split(" ")
+        all_objects = models.storage.all()
+
+        if len(args) >= 1:
+            if args[0] in HBNBCommand.class_list.keys():
+                if len(args) >= 2:
+                    if len(args) >= 3:
+                        if len(args) >= 4:
+                            key = "{}.{}".format(args[0], args[1])
+                            if key not in all_objects:
+                                print("** no instance found **")
+                                return
+                            if args[2] not in ['id', 'created_at', 'updated_at']:
+                                setattr(all_objects[key], args[2], args[3])
+                                models.storage.save()
+                        else:
+                            print("** value missing **")
+                    else:
+                        print("** attribute name missing **")
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
+
+        
+
+
     def do_show(self, arg):
         """ Prints the string representation of an
         instance based on the class name and id """
