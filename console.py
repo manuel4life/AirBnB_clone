@@ -2,11 +2,15 @@
 """ This is the command line or console module """
 
 import cmd
-from statistics import mode
 import sys
-from models.user import User
 import models
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +18,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     class_list = {
         'BaseModel': BaseModel,
-        'User': User
+        'User': User,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Place': Place,
+        'Review': Review
         }
     # obj_classes = [
     #     'BaseModel'
@@ -44,7 +53,6 @@ class HBNBCommand(cmd.Cmd):
                 new_obj = HBNBCommand.class_list[args]()
                 print("{}".format(new_obj.id))
                 new_obj.save()  # create and save new class
-                # models.storage.save()
             else:
                 print("** class doesn't exist **")
         else:
@@ -61,10 +69,12 @@ class HBNBCommand(cmd.Cmd):
                 if len(args) >= 2:
                     if len(args) >= 3:
                         if len(args) >= 4:
+                            # format the key
                             key = "{}.{}".format(args[0], args[1])
                             if key not in all_objects:
                                 print("** no instance found **")
                                 return
+                            # prevent id, created_at and updated_at from being updated
                             if args[2] not in ['id', 'created_at', 'updated_at']:
                                 setattr(all_objects[key], args[2], args[3])
                                 models.storage.save()
@@ -88,6 +98,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) >= 1:
             if args[0] in HBNBCommand.class_list.keys():
                 if len(args) == 2:
+                    # format the key
                     key = "{}.{}".format(args[0], args[1])
                     if key not in all_objects:
                         print("** no instance found **")
