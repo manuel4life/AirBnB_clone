@@ -38,6 +38,7 @@ class FileStorage:
 
         objects_dict = {key: FileStorage.__objects[key].to_dict()
                           for key in FileStorage.__objects.keys()}
+
         with open(FileStorage.__file_path, 'w') as fp:
             json.dump(objects_dict, fp)
 
@@ -46,7 +47,9 @@ class FileStorage:
 
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path) as fp:
+
                 dict_returned = json.load(fp)
+                
                 for obj in dict_returned.values():
                     class_name = obj["__class__"]
                     # del obj["__class__"]
