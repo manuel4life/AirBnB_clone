@@ -4,6 +4,7 @@
 import cmd
 from statistics import mode
 import sys
+from models.user import User
 import models
 from models.base_model import BaseModel
 
@@ -11,7 +12,10 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """ this is the console class """
     prompt = '(hbnb) '
-    class_list = {'BaseModel': BaseModel}
+    class_list = {
+        'BaseModel': BaseModel,
+        'User': User
+        }
     # obj_classes = [
     #     'BaseModel'
     # ]
@@ -48,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """ Updates an instance based on the class name and id by adding or updating attribute """
-    
+
         args = arg.split(" ")
         all_objects = models.storage.all()
 
@@ -74,9 +78,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
-
-        
-
 
     def do_show(self, arg):
         """ Prints the string representation of an
