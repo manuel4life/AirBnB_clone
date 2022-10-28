@@ -4,7 +4,8 @@
 
 import os
 import json
-
+from models.base_model import BaseModel
+from models.user import User
 
 class FileStorage:
     """ The file storage class """
@@ -14,7 +15,8 @@ class FileStorage:
 
     def all(self):
         """ returns the __objects dictionary """
-
+        # response = FileStorage.reload(self)
+        # print("{}".format(response))
         return FileStorage.__objects
 
     def new(self, obj):
@@ -28,15 +30,19 @@ class FileStorage:
     def save(self):
         """ serializes __objects to a JSON file """
 
-        e_objects = FileStorage.__objects
-        e_objects_dict = {key: e_objects[key].to_dict() for key in e_objects.keys()}
+        objects_dict = {key: FileStorage.__objects[key].to_dict()
+                          for key in FileStorage.__objects.keys()}
         with open(FileStorage.__file_path, 'w') as fp:
-            json.dump(e_objects_dict, fp)
+            json.dump(objects_dict, fp)
 
     def reload(self):
         """ deserializes a JSON file to __objects """
 
         if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path ) as fp:
-                res = json.load(fp)
-                return res
+            with open(FileStorage.__file_path) as fp:
+                dict_returned = json.load(fp)
+                for obj in dict_returned.values():
+                    class_name = obj["__class__"]
+                    # del obj["__class__"]
+                    self.new(eval(class_name)(**obj))
+                return
