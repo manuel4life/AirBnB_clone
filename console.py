@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create a new instance of a class """
-        print("new cmd: {}".format(args))
+
         if args:
             if args in HBNBCommand.class_list.keys():
                 new_obj = HBNBCommand.class_list[args]()
