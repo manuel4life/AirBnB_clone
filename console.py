@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create a new instance of a class """
-
+        print("new cmd: {}".format(args))
         if args:
             if args in HBNBCommand.class_list.keys():
                 new_obj = HBNBCommand.class_list[args]()
@@ -219,16 +219,18 @@ class HBNBCommand(cmd.Cmd):
                 "update": self.do_update
             }
 
-            # check if instance id is not None
-            if match_3:
-                if method_name == 'update':
-                    arg_string = "{} {} {} {}".format(
-                        class_name, obj_id, class_attribute, class_attribute_value)
+            if method_name in method_dict.keys():
+                if match_3:  # check if instance id is not None
+                    if method_name == 'update':
+                        arg_string = "{} {} {} {}".format(
+                            class_name, obj_id, class_attribute, class_attribute_value)
+                    else:
+                        arg_string = "{} {}".format(class_name, obj_id)
+                    method_dict[method_name](arg_string)
                 else:
-                    arg_string = "{} {}".format(class_name, obj_id)
-                method_dict[method_name](arg_string)
+                    method_dict[method_name](class_name)
             else:
-                method_dict[method_name](class_name)
+                print("command: not found".format(method_name))
         else:
             print("** class doesn't exist **")
 
