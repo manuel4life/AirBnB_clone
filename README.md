@@ -24,18 +24,25 @@ The following classes are used:
 
 ## Storage
 
-The presented classes are stored in [FileStorage](./models/engine/file_storage.py) class file.
-When the console is initialized, the console redirects an instance of
-FileStorage named storage.
-#Storage object is loaded or reloaded from any class instances stored in the
+All classes instancse are stored or reloaded by the storage engine: [FileStorage](./models/engine/file_storage.py) class file.
+An instance of this storage engine [FileStorage](./models/engine/file_storage.py) is initialized
+when the [console](./console.py) is active.
+Storage object is loaded or reloaded from any class instances stored in the
 JSON file file.json.
-Class instances are created, updated, or deleted and storage object registers
-changes intofile.json.
+From the console, class instances can be created, searched, updated, and destroyed. New instances or changes are
+stored in a `file.json` file.
 
+## Test It Locally
+
+To test this project locally: `git clone https://github.com/jbdanquah2/AirBnB_clone.git`.
+Move into the project folder from the command line: `mv ~/AirBnB_clone`.
+Run the `./console.py` file.
+Enter `?` or `help` for the list of commands, and `help create` for example, for details on a particular command.
+To exit the command line, enter `exit` or `ctrl + D`.
 ## Console
-The console is a CLI that allows the use of data as backend tool.
-It can be used to handle all classes predefined  previously called into
-`storage` object.
+The `console` is the CLI tool of the app that allows access and manipulate the Backend. It allows access to all classes
+and `storage` object.
+
 
 ### How to Use the CLI non-interactive
 To run the console in non-interactive mode:
@@ -67,12 +74,12 @@ $ ./console.py
 (hbnb)
 ```
 
-To quit the console, enter the command `quit`, or input an EOF signal
+To quit the console, enter the command `exit`, or input an EOF signal
 (`ctrl-D`).
 
 ```
 $ ./console.py
-(hbnb) quit
+(hbnb) exit
 $
 ```
 
