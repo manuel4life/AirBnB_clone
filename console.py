@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_update(self, arg):
-        """ Updates an instance based on the class name and id by adding or updating attribute """
+        """ Updates an instance based on the class name and id """
 
         args = arg.split(" ")
         all_objects = models.storage.all()
@@ -74,8 +74,10 @@ class HBNBCommand(cmd.Cmd):
                                 print("** no instance found **")
                                 return
 
-                            # prevent id, created_at and updated_at from being updated
-                            if args[2] not in ['id', 'created_at', 'updated_at']:
+                            # prevent id, created_at and updated_at
+                            # from being updated
+                            if args[2] not in [
+                              'id', 'created_at', 'updated_at']:
                                 setattr(all_objects[key], args[2], args[3])
                                 models.storage.save()
                         else:
@@ -230,7 +232,8 @@ class HBNBCommand(cmd.Cmd):
                 if match_3:  # check if instance id is not None
                     if method_name == 'update':
                         arg_string = "{} {} {} {}".format(
-                            class_name, obj_id, class_attribute, class_attribute_value)
+                            class_name, obj_id, class_attribute,
+                            class_attribute_value)
                     else:
                         arg_string = "{} {}".format(class_name, obj_id)
                     method_dict[method_name](arg_string)
