@@ -1,7 +1,5 @@
-<p align="center">
-  <img src="https://github.com/jbdanquah2/AirBnB_clone/blob/master/hbton.png" alt="Hbton logo">
-</p>
-
+<br>
+<br>
 <h2 align="left"> AirBnB clone project</h2>
 ---
 ## Description
