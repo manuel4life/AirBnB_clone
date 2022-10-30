@@ -2,6 +2,7 @@
 """ This is the command line or console module """
 
 import cmd
+from nis import match
 import re
 import models
 from models.base_model import BaseModel
@@ -197,18 +198,24 @@ class HBNBCommand(cmd.Cmd):
                 obj_id = match_3.group().split('", ')[0]
 
             if method_name == "update":
-                # retrieve the attribute name
-                match_4 = re.search(r"(?<=\").+(?=\"\))", arg)
-                print(match_4)
-                if match_4:
-                    class_attribute = match_4.group().split('", ')[
-                        1].split('"')[1]
+                # check if there's a dict
+                match_a_dict = re.search(r"({.+})", arg)
+                if match_a_dict:
+                    dict_rep = eval(match_a_dict.group(0))
+                    if type(dict_rep) == 'dict':
+                        pass
+                else:
+                    # retrieve the attribute name
+                    match_4 = re.search(r"(?<=\").+(?=\"\))", arg)
+                    if match_4:
+                        class_attribute = match_4.group().split('", ')[
+                            1].split('"')[1]
 
-                # retrieve the attribute value
-                match_5 = re.search(r"(?<=\").+(?=\"\))", arg)
-                if match_5:
-                    class_attribute_value = match_5.group().split('", ')[
-                        2].split('"')[1]
+                    # retrieve the attribute value
+                    match_5 = re.search(r"(?<=\").+(?=\"\))", arg)
+                    if match_5:
+                        class_attribute_value = match_5.group().split('", ')[
+                            2].split('"')[1]
 
             # dict for method selection
             method_dict = {
