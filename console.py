@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** instance id missing **")
             else:
-                print("** class name missing **")
+                print("** class doesn't exist **")
         else:
             print("** class name missing **")
 
